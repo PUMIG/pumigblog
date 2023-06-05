@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUMIG BLOG</title>
+
+    <link rel="icon" href="./img/favicon.png" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+<!--     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        // F12 버튼 방지
+        $(document).ready(function(){
+            $(document).bind('keydown',function(e){
+                if ( e.keyCode == 123 /* F12 */) {
+                    e.preventDefault();
+                    e.returnValue = false;
+                }
+            });
+        });
+        
+        // 우측 클릭 방지
+        document.onmousedown=disableclick;
+        status="우클릭 불가능 합니다.";
+        
+        function disableclick(event){
+            if (event.button==2) {
+                alert(status);
+                return false;
+            }
+        }
+
+        이건 body에 => oncontextmenu='return false' onselectstart='return false' ondragstart='return false'
+    </script>
+ --></head>
+<body style="background-color: antiquewhite; height: 100%;">
+
+    <nav name="navBar" class="navbar navbar-expand-lg bg-body">
+        <div class="container-fluid">
+            <img src="./img/favicon.png" alt="favicon" style="width: 35px;">
+            <a class="navbar-brand" href="./index.html">PUMIG BLOG</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a id="posting" class="nav-link" href="./posting.html">Posting</a>
+                </li>
+                </ul>
+                <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>    
+
+    <div name="contentsSpace" class="container-fluid" style="height: 100%;">
+
+        <div name="contentBox" class="row" style="height: 100%;">
+            <div class="col-3" style="background-color: cornflowerblue; height: 100%;">
+                <div class="list-group mt-3">
+                    <button id="category1" type="button" class="list-group-item list-group-item-action active" style="font-weight: bold; font-size: large;">
+                      일상
+                    </button>
+                    <button id="category2" type="button" class="list-group-item list-group-item-action" style="font-weight: bold; font-size: large;">언리얼</button>
+                    <button id="category3" type="button" class="list-group-item list-group-item-action" style="font-weight: bold; font-size: large;">여행</button>
+                  </div>
+            </div>
+
+            <div class="col-9" style="height: 100%;">
+                <div id="docsList" class="mt-3">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid bg-dark" style="height: 150px; width: 100%;">
+        <h3 class="pt-2 ps-1" style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">PUMIG BLOG</h3>
+        <h5 class="pt-2 ps-1" style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Here is the space that collect my philosophical ideas</h5>
+    </div>
+
+
+    <script>
+        const sc = document.createElement('script');
+        sc.src = "https://api64.ipify.org?format=jsonp&callback=getip";
+
+        document.body.appendChild(sc);
+        document.body.removeChild(sc);
+
+        function getip(data) {
+            var posting = document.getElementById("posting");
+            const userIp = data.ip;
+
+            localStorage.setItem("userIp", userIp);
+        }
+    </script>
+
+    <script type="module" src="./js/index.js"></script>
+
+</body>
+</html>
