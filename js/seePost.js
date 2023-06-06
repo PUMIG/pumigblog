@@ -201,4 +201,4 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
       location.reload();
     });
 
-  }, 700);
+  }, 1000);
