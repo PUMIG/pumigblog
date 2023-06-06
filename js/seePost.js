@@ -40,7 +40,6 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
     //화면 로딩 시 유저 ip의 state 확인 및 작업
     const usersDocRef = doc(db, "users", userIp);
     const usersDocSnap = await getDoc(usersDocRef);
-    var posting = document.getElementById("posting");
 
     if(usersDocSnap.data().state == "master") {
       posting.setAttribute('style', 'display: block;');
@@ -65,7 +64,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
         var commentH5Tag = document.createElement('h5');
         var commentHrTag = document.createElement('hr');
       
-        commentPTagUserId.innerHTML = usersDocSnap.data().userRandomId;
+        commentPTagUserId.innerHTML = commentsBySort[i].userRandomId;
         commentPTagWrittenDate.innerHTML = commentsBySort[i].writtenDate.toDate().toString().substring(0, 24);
         commentH5Tag.innerHTML =  commentsBySort[i].content;
 
@@ -173,6 +172,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
 
       commentObj.ip = userIp;
       commentObj.content = commentContent;
+      commentObj.userRandomId = usersDocSnap.data().userRandomId;
 
       if(editComment) {
         commentObj.writtenDate = originalCommentWrittenDate;
