@@ -24,8 +24,6 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
   const docRef = doc(db, "posts", castToseePost.ref1, castToseePost.ref2, castToseePost.title);
   const docSnap = await getDoc(docRef);
 
-  var editBtn = document.getElementById("editBtn");
-  var deleteBtn = document.getElementById("deleteBtn");
   var commentBtn = document.getElementById("commentBtn");
   var getComments = document.getElementById("getComments");
   var commentContentInput = document.getElementById("commentContent");
@@ -34,13 +32,11 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
   var editComment = false;
 
   //화면 로딩시 작업들
+  var posting = document.getElementById("posting");
+  var editBtn = document.getElementById("editBtn");
+  var deleteBtn = document.getElementById("deleteBtn");
+
   setTimeout(async function(){
-    var posting = document.getElementById("posting");
-
-    posting.setAttribute('style', 'display: none;');
-    editBtn.setAttribute('style', 'display: none;');
-    deleteBtn.setAttribute('style', 'display: none;');
-
     //화면 로딩 시 유저 ip의 state 확인 및 작업
     const usersDocRef = doc(db, "users", userIp);
     const usersDocSnap = await getDoc(usersDocRef);

@@ -23,11 +23,9 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
   var IsEdit = false;
 
   //화면 로딩시 작업들
+  var posting = document.getElementById("posting");
+
   setTimeout(async function(){
-    var posting = document.getElementById("posting");
-
-    posting.setAttribute('style', 'display: none;');
-
     //화면 로딩 시 유저 ip의 state 확인 및 작업
     const usersDocRef = doc(db, "users", userIp);
     const usersDocSnap = await getDoc(usersDocRef);

@@ -63,8 +63,6 @@ import { getFirestore, collection, doc, getDocs, query, setDoc, getDoc, orderBy 
   //화면 로딩시 작업들
   var posting = document.getElementById("posting");
 
-  posting.setAttribute('style', 'display: none;');
-
   setTimeout(async function(){
   //화면 로딩 시 유저 ip 서버 등록 확인 및 등록
   const usersDocRef = doc(db, "users", userIp);
