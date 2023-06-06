@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>    
     <script type="text/javascript">
         // F12 버튼 방지
         $(document).ready(function(){
@@ -27,17 +29,15 @@
         
         // 우측 클릭 방지
         document.onmousedown=disableclick;
-        status="우클릭 불가능 합니다.";
         
         function disableclick(event){
             if (event.button==2) {
-                alert(status);
                 return false;
             }
         }
     </script>
 </head>
-<body style="height: 100%; background-color: antiquewhite;" oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+<body style="height: 100%; background-color: antiquewhite;" >
 
     <nav name="navBar" class="navbar navbar-expand-lg bg-body">
         <div class="container-fluid">
@@ -94,7 +94,40 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
 
     <script>
-        new FroalaEditor('#blogPost');
+        
+/*         new FroalaEditor('#blogPost');
+ */
+        $('#blogPost').summernote({
+            placeholder: '내용 입력',
+            tabsize: 2,
+            height: 500,
+            toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+
+        var postEditor = document.getElementsByClassName("note-editable");
+
+        postEditor[0].setAttribute('style', 'background-color: white; height: 500px;');
+    
+        //ip 가져오기
+        var userIp = "?";
+
+        const sc = document.createElement('script');
+        sc.src = "https://api64.ipify.org?format=jsonp&callback=getip";
+
+        document.head.appendChild(sc);
+        document.head.removeChild(sc);
+
+        function getip(data) {
+            userIp = data.ip;
+        }
     </script>
 
     <script type="module" src="./js/posting.js"></script>

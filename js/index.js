@@ -60,8 +60,13 @@ import { getFirestore, collection, doc, getDocs, query, setDoc, getDoc, orderBy 
       docsList.appendChild(hrTag);
   });
 
+  //화면 로딩시 작업들
+  var posting = document.getElementById("posting");
+
+  posting.setAttribute('style', 'display: none;');
+
+  setTimeout(async function(){
   //화면 로딩 시 유저 ip 서버 등록 확인 및 등록
-  const userIp = localStorage.getItem("userIp");
   const usersDocRef = doc(db, "users", userIp);
   const usersDocSnap = await getDoc(usersDocRef);
   const usersRef = collection(db, "users");
@@ -79,11 +84,12 @@ import { getFirestore, collection, doc, getDocs, query, setDoc, getDoc, orderBy 
   //화면 로딩 시 유저 ip의 state 확인 및 작업
   const usersDocRef2 = doc(db, "users", userIp);
   const usersDocSnap2 = await getDoc(usersDocRef2);
-  var posting = document.getElementById("posting");
 
-  if(usersDocSnap2.data().state == "normal") {
-    posting.setAttribute('style', 'display: none;');
+  if(usersDocSnap2.data().state == "master") {
+    posting.setAttribute('style', 'display: block;');
   }
+
+  }, 700);
 
   //여기서부터는 카테고리 버튼들 구현
   category1Btn.addEventListener('click', async function() {

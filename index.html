@@ -25,11 +25,9 @@
         
         // 우측 클릭 방지
         document.onmousedown=disableclick;
-        status="우클릭 불가능 합니다.";
         
         function disableclick(event){
             if (event.button==2) {
-                alert(status);
                 return false;
             }
         }
@@ -88,19 +86,18 @@
         <h5 class="pt-2 ps-1" style="color: white; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Here is the space that collect my philosophical ideas</h5>
     </div>
 
-
     <script>
+        //ip 가져오기
+        var userIp = "?";
+
         const sc = document.createElement('script');
         sc.src = "https://api64.ipify.org?format=jsonp&callback=getip";
 
-        document.body.appendChild(sc);
-        document.body.removeChild(sc);
+        document.head.appendChild(sc);
+        document.head.removeChild(sc);
 
         function getip(data) {
-            var posting = document.getElementById("posting");
-            const userIp = data.ip;
-
-            localStorage.setItem("userIp", userIp);
+            userIp = data.ip;
         }
     </script>
 
