@@ -61,7 +61,7 @@
         </div>
     </nav>
 
-    <div name="contentsSpace" class="container-fluid">
+    <div name="contentsSpace" class="container-fluid" style="margin-bottom: 1000px;">
 
         <div class="mb-3 mt-3">
             <label class="form-label">제목</label>
@@ -116,8 +116,8 @@
         const sc = document.createElement('script');
         sc.src = "https://api64.ipify.org?format=jsonp&callback=getip";
 
-        document.head.appendChild(sc);
-        document.head.removeChild(sc);
+        document.body.appendChild(sc);
+        document.body.removeChild(sc);
 
         function getip(data) {
             userIp = data.ip;
@@ -125,6 +125,7 @@
     </script>
 
     <script type="module" src="./js/posting.js"></script>
+    <script type="module" src="./js/navSearch.js"></script>
         
 </body>
 </html>

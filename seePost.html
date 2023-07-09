@@ -13,7 +13,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
         // F12 버튼 방지
         $(document).ready(function(){
             $(document).bind('keydown',function(e){
@@ -33,7 +33,7 @@
             }
         }
     </script>
-</head>
+ --></head>
 <body style="height: 100%; background-color: antiquewhite;" oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
 
     <nav name="navBar" class="navbar navbar-expand-lg bg-body">
@@ -60,32 +60,36 @@
         </div>
     </nav>
 
-    <div class="container mt-3 mb-3" style="height: 100%; background-color: rgb(238, 250, 253); border-radius: 20px;">
-        <div  id="contentTitle"  class="container mb-2" style="width: 100%;">
+    <div class="container-fluid" style="margin-bottom: 1000px;">
 
+        <div class="container mt-3 mb-3" style="height: fit-content; background-color: rgb(238, 250, 253); border-radius: 20px;">
+            <div  id="contentTitle"  class="container mb-2" style="width: 100%;">
+    
+            </div>
+    
+            <div style="width: 100%;">
+                <p id="postWrittenDate" style="text-align: right;"></p>
+            </div>
+    
+            <div id="contentSpace">
+                
+            </div>
         </div>
-
-        <div style="width: 100%;">
-            <p id="postWrittenDate" style="text-align: right;"></p>
+    
+        <div class="container">
+            <button id="editBtn" type="button" class="btn btn-primary mb-5 ms-3" style="display: none;">수정</button>
+            <button id="deleteBtn" type="button" class="btn btn-danger mb-5 ms-3" style="display: none;">삭제</button>    
         </div>
-
-        <div id="contentSpace">
-            
+    
+        <div id="commentSpace" class="container mb-5" style="height: 20%;">
+            <label for="exampleFormControlTextarea1" class="form-label">댓글</label>
+            <textarea class="form-control" id="commentContent" rows="5"></textarea>
+            <button id="commentBtn" type="button" class="btn btn-success float-end mt-3">입력</button>
         </div>
-    </div>
+    
+        <div id="getComments" class="container mb-5">
+        </div>    
 
-    <div class="container">
-        <button id="editBtn" type="button" class="btn btn-primary mb-5 ms-3" style="display: none;">수정</button>
-        <button id="deleteBtn" type="button" class="btn btn-danger mb-5 ms-3" style="display: none;">삭제</button>    
-    </div>
-
-    <div id="commentSpace" class="container mb-5" style="height: 20%;">
-        <label for="exampleFormControlTextarea1" class="form-label">댓글</label>
-        <textarea class="form-control" id="commentContent" rows="5"></textarea>
-        <button id="commentBtn" type="button" class="btn btn-success float-end mt-3">입력</button>
-    </div>
-
-    <div id="getComments" class="container mb-5">
     </div>
 
     <div class="container-fluid bg-dark" style="height: 150px; width: 100%;">
@@ -100,8 +104,8 @@
         const sc = document.createElement('script');
         sc.src = "https://api64.ipify.org?format=jsonp&callback=getip";
 
-        document.head.appendChild(sc);
-        document.head.removeChild(sc);
+        document.body.appendChild(sc);
+        document.body.removeChild(sc);
 
         function getip(data) {
             userIp = data.ip;
@@ -109,6 +113,7 @@
     </script>
 
 <script type="module" src="./js/seePost.js"></script>
+<script type="module" src="./js/navSearch.js"></script>
 
 </body>
 </html>

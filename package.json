@@ -2,5 +2,6 @@
   "dependencies": {
     "axios": "^1.4.0",
     "froala-editor": "^4.0.19"
-  }
+  },
+  "type": "module"
 }

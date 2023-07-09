@@ -23,7 +23,7 @@ import { getFirestore, collection, doc, getDocs, query, setDoc, getDoc, orderBy 
   var category2Btn = document.getElementById("category2");
   var category3Btn = document.getElementById("category3");
   var docsList = document.getElementById("docsList");
-  
+
   docsList.innerHTML = "";
 
   //화면 로딩 시에는 일상 카테고리를 로딩하는 것이 디폴트
@@ -57,7 +57,7 @@ import { getFirestore, collection, doc, getDocs, query, setDoc, getDoc, orderBy 
       hrTag.setAttribute('class', 'ms-2');
   
       docsList.appendChild(aTag);
-      docsList.appendChild(hrTag);
+      docsList.appendChild(hrTag);  
   });
 
   //화면 로딩시 작업들
@@ -88,6 +88,7 @@ import { getFirestore, collection, doc, getDocs, query, setDoc, getDoc, orderBy 
   }
 
   }, 1000);
+
 
   //여기서부터는 카테고리 버튼들 구현
   category1Btn.addEventListener('click', async function() {
