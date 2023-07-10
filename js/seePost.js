@@ -29,6 +29,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
   var commentContentInput = document.getElementById("commentContent");
   var originalComment = new Object();
   var originalCommentWrittenDate = "?";
+  var originalCommentWrittenDateString = "?";
   var editComment = false;
 
   //화면 로딩시 작업들
@@ -95,7 +96,8 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
           getCreatedEditBtn.addEventListener('click', function() {
             commentContentInput.value = commentsBySort[checkNowComment].content;
             originalComment = commentsBySort[checkNowComment];
-            originalCommentWrittenDate = commentsBySort[checkNowComment].writtenDate.toDate();
+            originalCommentWrittenDate = commentsBySort[checkNowComment].writtenDate;
+            originalCommentWrittenDateString = commentsBySort[checkNowComment].writtenDateString;
             editComment = true;
           });
 
@@ -177,6 +179,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
 
       if(editComment) {
         commentObj.writtenDate = originalCommentWrittenDate;
+        commentObj.writtenDateString = originalCommentWrittenDateString;
 
         await updateDoc(docRef, {
           comments: arrayRemove(originalComment)
