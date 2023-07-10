@@ -86,14 +86,24 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
             editPostRef = collection(db, "posts", "Trip", "TripPosts");
           }  
   
-          await setDoc(doc(editPostRef, postTitle), {
-            title: postTitle,
-            content: postContent,
-            writer: "PUMIG",
-            writtenDate: originalWrittenDate,
-            ip: userIp,
-            comments: originalComments
-          });
+          if(originalComments) {
+            await setDoc(doc(editPostRef, postTitle), {
+              title: postTitle,
+              content: postContent,
+              writer: "PUMIG",
+              writtenDate: originalWrittenDate,
+              ip: userIp,
+              comments: originalComments
+            });  
+          } else {
+            await setDoc(doc(editPostRef, postTitle), {
+              title: postTitle,
+              content: postContent,
+              writer: "PUMIG",
+              writtenDate: originalWrittenDate,
+              ip: userIp,
+            });  
+          }
         } else {
           if(originalCategory == "Daily") {
             editPostRef = collection(db, "posts", "Daily", "DailyPosts");
@@ -103,14 +113,24 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
             editPostRef = collection(db, "posts", "Trip", "TripPosts");
           }
 
-          await setDoc(doc(editPostRef, castToposting.title), {
-            title: postTitle,
-            content: postContent,
-            writer: "PUMIG",
-            writtenDate: originalWrittenDate,
-            ip: userIp,
-            comments: originalComments
-          });
+          if(originalComments) {
+            await setDoc(doc(editPostRef, castToposting.title), {
+              title: postTitle,
+              content: postContent,
+              writer: "PUMIG",
+              writtenDate: originalWrittenDate,
+              ip: userIp,
+              comments: originalComments
+            });  
+          } else {
+            await setDoc(doc(editPostRef, castToposting.title), {
+              title: postTitle,
+              content: postContent,
+              writer: "PUMIG",
+              writtenDate: originalWrittenDate,
+              ip: userIp,
+            });  
+          }
         }
     
         alert("글 수정 완료!");

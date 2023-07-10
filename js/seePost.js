@@ -31,6 +31,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
   var originalCommentWrittenDate = "?";
   var originalCommentWrittenDateString = "?";
   var editComment = false;
+  var comments;
 
   //화면 로딩시 작업들
   var posting = document.getElementById("posting");
@@ -50,7 +51,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
 
     //댓글 가져오기
     if(docSnap.data().comments) {
-      var comments = docSnap.data().comments;
+      comments = docSnap.data().comments;
 
       var commentsBySort = comments.sort((a, b) => {
         if(a.writtenDate > b.writtenDate) return -1;
@@ -140,15 +141,24 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
 
     //버튼 작업
     editBtn.addEventListener('click', function() {
-      if(usersDocSnap.data().state == "master") {        
-        var castToposting = {
-          title: docSnap.data().title,
-          content: docSnap.data().content,
-          date: docSnap.data().writtenDate.toDate(),
-          category: castToseePost.ref1,
-          comments: comments
+      if(usersDocSnap.data().state == "master") {
+        if(comments) {
+          var castToposting = {
+            title: docSnap.data().title,
+            content: docSnap.data().content,
+            date: docSnap.data().writtenDate.toDate(),
+            category: castToseePost.ref1,
+            comments: comments
+          }  
+        } else {
+          var castToposting = {
+            title: docSnap.data().title,
+            content: docSnap.data().content,
+            date: docSnap.data().writtenDate.toDate(),
+            category: castToseePost.ref1,
+          }  
         }
-    
+
         localStorage.setItem("castToposting", JSON.stringify(castToposting));
         location.href = "./posting.html";
         } else {
