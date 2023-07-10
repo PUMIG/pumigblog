@@ -52,8 +52,8 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
       var comments = docSnap.data().comments;
 
       var commentsBySort = comments.sort((a, b) => {
-        if(a.writtenDate.toDate() > b.writtenDate.toDate()) return -1;
-        if(a.writtenDate.toDate() < b.writtenDate.toDate()) return 1;
+        if(a.writtenDate > b.writtenDate) return -1;
+        if(a.writtenDate < b.writtenDate) return 1;
         return 0;
       });
 
@@ -65,7 +65,7 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
         var commentHrTag = document.createElement('hr');
       
         commentPTagUserId.innerHTML = commentsBySort[i].userRandomId;
-        commentPTagWrittenDate.innerHTML = commentsBySort[i].writtenDate.toDate().toString().substring(0, 24);
+        commentPTagWrittenDate.innerHTML = commentsBySort[i].writtenDateString.substring(0, 24);
         commentH5Tag.innerHTML =  commentsBySort[i].content;
 
         commentPTagsDiv.setAttribute('class', 'row');
@@ -138,12 +138,13 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
 
     //버튼 작업
     editBtn.addEventListener('click', function() {
-      if(usersDocSnap.data().state == "master") {
+      if(usersDocSnap.data().state == "master") {        
         var castToposting = {
-          "title": docSnap.data().title,
-          "content": docSnap.data().content,
-          "date": docSnap.data().writtenDate.toDate(),
-          "category": castToseePost.ref1
+          title: docSnap.data().title,
+          content: docSnap.data().content,
+          date: docSnap.data().writtenDate.toDate(),
+          category: castToseePost.ref1,
+          comments: comments
         }
     
         localStorage.setItem("castToposting", JSON.stringify(castToposting));
@@ -189,7 +190,13 @@ import { getFirestore, doc, getDoc, deleteDoc, updateDoc, arrayUnion, arrayRemov
 
         editComment = false;
       } else {
-        commentObj.writtenDate = new Date(Date.now());
+        if(comments) {
+          commentObj.writtenDate = comments.length + 1;
+        } else {
+          commentObj.writtenDate = 1;
+        }
+
+        commentObj.writtenDateString = new Date().toString();
 
         await updateDoc(docRef, {
           comments: arrayUnion(commentObj)

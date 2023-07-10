@@ -31,7 +31,7 @@ import { getFirestore, collection, query, where, getDocs } from "https://cdnjs.c
     var Obj = {
       title: doc.data().title,
       category: 'Daily'
-    };
+    }
 
     titles.push(Obj);
   });
@@ -60,7 +60,7 @@ import { getFirestore, collection, query, where, getDocs } from "https://cdnjs.c
     titles.push(Obj);
   });
 
-  searchBtn.addEventListener('click', async function() {
+  searchBtn.addEventListener('click', function() {
     docsList.innerHTML = "";
 
     for(var i = 0; i < titles.length; i++) {

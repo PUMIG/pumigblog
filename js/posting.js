@@ -27,6 +27,7 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
   var originalCategory;
   var editPostRef;
   var originalPostDocRef;
+  var originalComments;
   var posting = document.getElementById("posting");
 
   setTimeout(async function(){
@@ -46,6 +47,7 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
       var categorySelect = document.getElementById("categorySelect");
       originalWrittenDate = new Date(castToposting.date);
       originalCategory = castToposting.category;
+      originalComments = castToposting.comments;
 
       postTitle.value = castToposting.title;
       categorySelect.value = castToposting.category;
@@ -89,7 +91,8 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
             content: postContent,
             writer: "PUMIG",
             writtenDate: originalWrittenDate,
-            ip: userIp
+            ip: userIp,
+            comments: originalComments
           });
         } else {
           if(originalCategory == "Daily") {
@@ -105,7 +108,8 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, getDoc } from "https:
             content: postContent,
             writer: "PUMIG",
             writtenDate: originalWrittenDate,
-            ip: userIp
+            ip: userIp,
+            comments: originalComments
           });
         }
     
